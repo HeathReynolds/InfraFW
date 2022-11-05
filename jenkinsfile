@@ -16,9 +16,7 @@ pipeline {
     }
     stage('terraform') {
       steps {
-        def tfHome = tool name: 'Terraform'
-        env.Path = "${tfHome};${env.Path}"
-        bat 'terraform apply -auto-approve -no-color'
+        bat "${tool name: 'JenkinsTF'}terraform apply --auto-approve --no-color"
       }
     }
   }
