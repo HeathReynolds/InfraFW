@@ -31,6 +31,6 @@ resource "nsxt_policy_security_policy" "firewall_section" {
     action             = "ALLOW"
     logged             = "false"
     ip_version         = "IPV4"
-    sources            = "192.168.110.90"
+    source            = "192.168.110.90"
   }
 }
