@@ -20,7 +20,6 @@ provider "nsxt" {
 resource "nsxt_policy_security_policy" "firewall_section" {
   display_name = "Jenkins_Infra"
   description  = "Firewall section created by Terraform"
-  scope        = [nsxt_policy_group.all_vms.path]
   category     = "Infrastructure"
   locked       = "false"
   stateful     = "true"
