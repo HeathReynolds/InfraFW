@@ -31,18 +31,16 @@ resource "nsxt_policy_security_policy" "firewall_section" {
   locked       = "false"
   stateful     = "true"
 
-  # Allow communication to any VMs only on the ports defined earlier
   rule {
-    display_name       = "Allow Jenkins Build Server1"
-    description        = "In going rule"
-    action             = "ALLOW"
-    logged             = "false"
-    ip_version         = "IPV4"
-    direction          = "OUT"
-    
+    display_name          = "Infrastructure Servers"
+    description           = "Allow Infra MGMT"
+    action                = "ALLOW"
+    logged                = true
+    ip_protocol           = "IPV4"
+
     source {
       target_type = "IPSet"
-      target_id   = "${nsxt_ip_set.InfraIPSet.id}"
+      target_id   = nsxt_ip_set.InfraIPSet.id
     }
   }
 }
