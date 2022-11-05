@@ -27,7 +27,7 @@ resource "nsxt_policy_security_policy" "firewall_section" {
 
   # Allow communication to any VMs only on the ports defined earlier
   rule {
-    display_name       = "Allow Jenkins Build Server"
+    display_name       = "Allow Jenkins Build Server1"
     description        = "In going rule"
     action             = "ALLOW"
     logged             = "false"
