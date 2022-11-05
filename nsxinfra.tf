@@ -38,6 +38,8 @@ resource "nsxt_policy_security_policy" "firewall_section" {
     action             = "ALLOW"
     logged             = "false"
     ip_version         = "IPV4"
+    direction          = "OUT"
+    
     source {
       target_type = "IPSet"
       target_id   = "${nsxt_ip_set.InfraIPSet.id}"
