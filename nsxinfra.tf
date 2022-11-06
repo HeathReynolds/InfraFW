@@ -76,11 +76,6 @@ resource "nsxt_policy_security_policy" "firewall_section" {
     logged                = true
     ip_version            = "IPV4"
     destination_groups    = [nsxt_policy_group.infra_ip.path]
-    services           = [data.nsxt_policy_service.ldap.path]
-    services           = [data.nsxt_policy_service.syslog.path]
-    services           = [data.nsxt_policy_service.ad.path]
-    services           = [data.nsxt_policy_service.dns.path]
-    services           = [data.nsxt_policy_service.ntp.path]
-    services           = [data.nsxt_policy_service.ldapssl.path]
+    services           = [data.nsxt_policy_service.ldap.path, data.nsxt_policy_service.syslog.path, data.nsxt_policy_service.ad.path, data.nsxt_policy_service.dns.path, data.nsxt_policy_service.ntp.path, data.nsxt_policy_service.ldapssl.path]
   }
 }
