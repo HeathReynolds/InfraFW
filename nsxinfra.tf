@@ -7,6 +7,7 @@ terraform {
 }
 
 provider "nsxt" {
+  version               = "~> 3.2"
   host                  = "nsxmgr-01a"
   username              = "admin"
   password              = "VMware1!VMware1!"
