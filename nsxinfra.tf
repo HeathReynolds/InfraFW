@@ -41,6 +41,6 @@ resource "nsxt_policy_security_policy" "firewall_section" {
     action                = "ALLOW"
     logged                = true
     ip_version            = "IPV4"
-    source_groups         = [nsxt_policy_group.infra_ip] 
+    source_groups         = [nsxt_policy_group.infra_ip.path] 
   }
 }
