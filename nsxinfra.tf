@@ -18,6 +18,30 @@ provider "nsxt" {
   retry_on_status_codes = [429]
 }
 
+data "nsxt_policy_service" "ldap" {
+  display_name = "LDAP"
+}
+
+data "nsxt_policy_service" "syslog" {
+  display_name = "Syslog (UDP)"
+}
+
+data "nsxt_policy_service" "ad" {
+  display_name = "Active Directory Servives"
+}
+
+data "nsxt_policy_service" "dns" {
+  display_name = "DNS"
+}
+
+data "nsxt_policy_service" "ntp" {
+  display_name = "NTP"
+}
+
+data "nsxt_policy_service" "ldapssl" {
+  display_name = "LDAP-over-SSL"
+}
+
 resource "nsxt_policy_group" "infra_ip" {
   description  = "Group containing Infrastructure IPs"
   display_name = "InfraIPSet"
@@ -42,5 +66,21 @@ resource "nsxt_policy_security_policy" "firewall_section" {
     logged                = true
     ip_version            = "IPV4"
     source_groups         = [nsxt_policy_group.infra_ip.path] 
+  }
+}
+
+  rule {
+    display_name          = "Infrastructure Services"
+    description           = "Allow Infra Services"
+    action                = "ALLOW"
+    logged                = true
+    ip_version            = "IPV4"
+    destination_groups    = [nsxt_policy_group.infra_ip.path]
+    services           = [data.nsxt_policy_service.ldap.path]
+    services           = [data.nsxt_policy_service.syslog.path]
+    services           = [data.nsxt_policy_service.ad.path]
+    services           = [data.nsxt_policy_service.dns.path]
+    services           = [data.nsxt_policy_service.ntp.path]
+    services           = [data.nsxt_policy_service.ldapssl.path]
   }
 }
