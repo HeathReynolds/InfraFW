@@ -37,7 +37,7 @@ data "nsxt_policy_service" "syslog" {
 }
 
 data "nsxt_policy_service" "ad" {
-  display_name = "Active Directory Servives"
+  display_name = "Active Directory Server"
 }
 
 data "nsxt_policy_service" "dns" {
