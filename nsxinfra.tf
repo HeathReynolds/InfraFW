@@ -18,14 +18,17 @@ provider "nsxt" {
   retry_on_status_codes = [429]
 }
 
-resource "nsxt_ip_set" "InfraIPSet" {
+resource "nsxt_infra_policy" "InfraIPSet" {
   description  = "IS provisioned by Terraform"
   display_name = "InfraIPSet"
-
-  ip_addresses = ["192.168.110.10", "192.169.110.90"]
+  criteria {
+    ipaddress_expression {
+      ip_addresses = ["192.168.110.10", "192.169.110.90"]
+    }
+  }
 }
 
-resource "nsxt_policy_security_policy" "firewall_section" {
+resource "nsxt_infra_security_policy" "firewall_section" {
   display_name = "Jenkins_Infra"
   description  = "Firewall section created by Terraform"
   category     = "Infrastructure"
@@ -37,11 +40,7 @@ resource "nsxt_policy_security_policy" "firewall_section" {
     description           = "Allow Infra MGMT"
     action                = "ALLOW"
     logged                = true
-    ip_protocol           = "IPV4"
-
-    source {
-      target_type = "IPSet"
-      target_id   = nsxt_ip_set.InfraIPSet.id
-    }
+    ip_version            = "IPV4"
+    source_groups         = [nsxt_infra_policy.InfraIPSet] 
   }
 }
