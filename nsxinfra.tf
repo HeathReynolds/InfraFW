@@ -67,7 +67,6 @@ resource "nsxt_policy_security_policy" "firewall_section" {
     ip_version            = "IPV4"
     source_groups         = [nsxt_policy_group.infra_ip.path] 
   }
-}
 
   rule {
     display_name          = "Infrastructure Services"
