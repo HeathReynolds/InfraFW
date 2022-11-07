@@ -23,7 +23,7 @@ resource "nsxt_policy_group" "infra_ip" {
   display_name = "InfraIPSet"
   criteria {
     ipaddress_expression {
-      ip_addresses = ["192.168.110.10", "192.169.110.90"]
+      ip_addresses = ["192.168.110.10", "192.169.110.90", "192.168.100.1", "192.168.110.1"]
     }
   }
 }
