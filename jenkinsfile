@@ -17,6 +17,7 @@ pipeline {
     stage('terraform') {
       steps {
         bat "${tool name: 'JenkinsTF'}terraform init"
+        bat "${tool name: 'JenkinsTF'}terraform import"
         bat "${tool name: 'JenkinsTF'}terraform apply -auto-approve -no-color"
       }
     }
