@@ -78,4 +78,3 @@ resource "nsxt_policy_security_policy" "firewall_section" {
     services           = [data.nsxt_policy_service.ldap.path, data.nsxt_policy_service.syslog.path, data.nsxt_policy_service.ad.path, data.nsxt_policy_service.dns.path, data.nsxt_policy_service.ntp.path, data.nsxt_policy_service.ldapssl.path]
   }
 }
-#Test Push
